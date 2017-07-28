@@ -1,3 +1,20 @@
+# get the table of read counts
+read.counts <- read.table("/Users/safa/Documents/PhD-Hausbeck lab/Results/summer2017/RNAseq-project/SeqAnalysis/htseqCount_results.txt", header = TRUE)
+#the gene IDs should be stored as row.names
+row.names(read.counts) <- read.counts$Geneid
+#give meaningful sample names
+names(read.counts) <- c("C7-1", "C7-2", "C7-3", "C10-1", "C10-2", "C10-3", "C14-1", "C14-2", "C14-3", "C21-1", "C21-2", "C21-3", "D7-1", "D7-2", "D7-3", "D10-1", "D10-2", "D10-3", "D14-1", "D14-2", "D14-3", "D21-1", "D21-2", "D21-3")
+str(read.counts)
+head(read.counts)
+# make a data.frame with meta-data where row.names should match the individual sample names
+sample.info <- data.frame(condition = c( rep("C7", 3), rep("C10", 3), rep("C14", 3), rep("C21", 3), rep("D7", 3), rep("D10", 3), rep("D14", 3), rep("D21", 3)), row.names=names(read.counts))
+Error in data.frame(condition = c(rep("C7", 3), rep("C10", 3), rep("C14",  : 
+  row names supplied are of the wrong length
+
+
+
+
+
 source ("http://bioconductor.org/biocLite.R")
 biocLite("DESeq2")
 library(DESeq2)
